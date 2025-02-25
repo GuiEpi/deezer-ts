@@ -1,5 +1,3 @@
-// src/resources/Artist.ts
-
 import { Podcast } from "./podcast";
 import { Resource } from "./resource";
 

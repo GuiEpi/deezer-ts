@@ -1,5 +1,3 @@
-// src/resources/Artist.ts
-
 import { parseDate } from "../date";
 import { PaginatedList } from "../pagination";
 import { Artist } from "./artist";

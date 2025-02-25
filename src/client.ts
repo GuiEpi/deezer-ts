@@ -18,9 +18,13 @@ import {
   Track,
   User,
 } from "./resources";
-import { DeezerResponseError, GenericPaginatedList, GenericResourceConstructor, JsonResponse, ResourceConstructor } from "./types";
-
-
+import {
+  DeezerResponseError,
+  GenericPaginatedList,
+  GenericResourceConstructor,
+  JsonResponse,
+  ResourceConstructor,
+} from "./types";
 
 /**
  * Client for interacting with the Deezer API.

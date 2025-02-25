@@ -1,5 +1,3 @@
-// src/resources/Artist.ts
-
 import { Resource } from "./resource";
 
 export class User extends Resource {

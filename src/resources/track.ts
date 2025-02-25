@@ -1,5 +1,3 @@
-// src/resources/Artist.ts
-
 import { Album } from "./album";
 import { Artist } from "./artist";
 import { Resource } from "./resource";

@@ -1,5 +1,3 @@
-// src/resources/Artist.ts
-
 import { PaginatedList } from "../pagination";
 import { Album } from "./album";
 import { Playlist } from "./playlist";

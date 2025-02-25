@@ -1,7 +1,10 @@
 import { Client } from "./client";
 import { Resource } from "./resources";
 
-export type ResourceConstructor = new (client: Client, json: JsonResponse) => Resource;
+export type ResourceConstructor = new (
+  client: Client,
+  json: JsonResponse,
+) => Resource;
 
 export type GenericResourceConstructor<T = Resource> = new (
   client: Client,

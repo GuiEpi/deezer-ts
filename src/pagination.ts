@@ -32,7 +32,7 @@ export class PaginatedList<T extends Resource> implements AsyncIterable<T> {
 
   /**
    * The total number of items in the list, mirroring what Deezer returns.
-   * 
+   *
    * @returns {Promise<number | null>} - The total number of items in the list.
    */
   public async total(): Promise<number | null> {
@@ -54,10 +54,10 @@ export class PaginatedList<T extends Resource> implements AsyncIterable<T> {
 
   /**
    * Returns a slice of the list.
-   * 
+   *
    * @param {number} start - The index to start the slice at.
    * @param {number} end - The index to end the slice at.
-   * 
+   *
    * @returns {Promise<T[]>} - The slice of the list.
    */
   public async slice(start: number = 0, end?: number): Promise<T[]> {
@@ -80,9 +80,9 @@ export class PaginatedList<T extends Resource> implements AsyncIterable<T> {
 
   /**
    * Returns the item at the given index.
-   * 
+   *
    * @param {number} index - The index of the item to return.
-   * 
+   *
    * @returns {Promise<T>} - The item at the given index.
    */
   public async get(index: number): Promise<T> {
@@ -95,9 +95,9 @@ export class PaginatedList<T extends Resource> implements AsyncIterable<T> {
 
   /**
    * Returns the list as an array.
-   * 
+   *
    * This method is not recommended for large lists, as it will fetch all items at once.
-   * 
+   *
    * @returns {Promise<T[]>} - The list as an array.
    */
   public async toArray(): Promise<T[]> {
