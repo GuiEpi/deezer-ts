@@ -1,0 +1,34 @@
+{
+  "name": "deezer-ts",
+  "version": "1.0.0",
+  "description": "Deezer API wrapper for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:docs": "typedoc",
+    "format": "prettier --write src/*",
+    "test": "ts-node tests/index.ts"
+  },
+  "keywords": [
+    "deezer",
+    "api",
+    "wrapper",
+    "node",
+    "typescript",
+    "client",
+    "ts",
+    "deezer-ts"
+  ],
+  "author": "Guillaume COUSSOT",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "@types/node": "^22.13.5",
+    "eslint": "^9.20.1",
+    "prettier": "^3.5.1",
+    "ts-node": "^10.9.2",
+    "typedoc": "^0.27.9",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.1"
+  }
+}
