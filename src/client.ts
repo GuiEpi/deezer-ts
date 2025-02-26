@@ -27,16 +27,44 @@ import {
 } from "./types";
 
 /**
- * Client for interacting with the Deezer API.
- *
  * @category API Reference
  * @subcategory Reference
+ * 
+ * A client to retrieve some basic infos about Deezer resources.
+ * 
+ * Create a client instance with the given options. 
+ * Options should be passed in to the constructor as kwargs.
+ * 
+ * @example
+ * ```ts
+ * import { Client } from "deezer-ts";
+ * client = new Client();
+ * ```
+ * This client provides several methods to retrieve the content 
+ * most kinds of Deezer objects, based on their json structure.
+ * 
+ * Headers can be forced by using the `headers` kwarg. 
+ * For example, use `Accept-Language` header to force the output language.
+ * 
+ * @example
+ * ```ts
+ * import { Client } from "deezer-ts";
+ * client = new Client({ headers: { "Accept-Language": "en" } });
+ * ```
+ * @param {Record<string, string>} headers - Additional headers to pass.
  */
 export class Client {
   /**
    * @internal
    */
   private baseUrl: string = "https://api.deezer.com";
+
+  /**
+   * Create a new client instance.
+   * 
+   * @param {Record<string, string>} [headers] - Additional headers to pass.
+   */
+  constructor(private headers?: Record<string, string>) {}
 
   /**
    * @internal
@@ -72,7 +100,7 @@ export class Client {
    * @returns instance of Resource
    * @throws DeezerUnknownResource
    */
-  private processJson<T>(
+  private _processJson<T>(
     item: JsonResponse,
     paginateList: boolean = false,
     parent?: Resource,
@@ -82,7 +110,7 @@ export class Client {
   ): GenericResourceConstructor<T> | GenericPaginatedList<T> | any {
     if (item.data) {
       const parsedData = item.data.map((i) =>
-        this.processJson(i, false, parent),
+        this._processJson(i, false, parent),
       );
 
       if (!paginateList) {
@@ -102,7 +130,7 @@ export class Client {
         typeof value === "object" &&
         ("type" in value || "data" in value)
       ) {
-        value = this.processJson(value, false, parent);
+        value = this._processJson(value, false, parent);
       }
       result[key] = value;
     }
@@ -207,6 +235,9 @@ export class Client {
 
     const response = await fetch(url, {
       method,
+      headers: {
+        ...this.headers,
+      },
     });
 
     if (!response.ok) {
@@ -219,7 +250,7 @@ export class Client {
       throw new DeezerErrorResponse(data.error);
     }
 
-    return this.processJson<T>(
+    return this._processJson<T>(
       data,
       paginateList,
       parent,
@@ -598,5 +629,140 @@ export class Client {
    */
   async getUserCharts(userId: number): Promise<PaginatedList<Chart>> {
     return this.getPaginatedList<Chart>(`user/${userId}/charts`);
+  }
+
+  // --------------------------------------------------
+
+  /**
+   * @internal
+   */
+  private async _search<T extends Resource>(
+    path: string,
+    query: string = "",
+    strict?: boolean,
+    ordering?: string,
+    advancedParams: Record<string, string | number | null> = {},
+  ): Promise<PaginatedList<T>> {
+    const optionalParams: Record<string, string> = {};
+
+    if (strict === true) {
+      optionalParams["strict"] = "on";
+    }
+    if (ordering) {
+      optionalParams["ordering"] = ordering;
+    }
+
+    const queryParts: string[] = [];
+    if (query) {
+      queryParts.push(query);
+    }
+
+    Object.entries(advancedParams)
+      .filter(([_, value]) => value !== null)
+      .forEach(([paramName, paramValue]) => {
+        queryParts.push(`${paramName}:"${paramValue}"`);
+      });
+
+    console.log(path ? `search/${path}` : "search", {
+      q: queryParts.join(" "),
+      ...optionalParams,
+    })
+
+    return this.getPaginatedList<T>(path ? `search/${path}` : "search", {
+      q: queryParts.join(" "),
+      ...optionalParams,
+    });
+  }
+
+  /**
+   * @group Search
+   * 
+   * Search tracks.
+   *
+   * Advanced search is available by either formatting the query yourself or
+   * by using the dedicated keywords arguments.
+   *
+   * @param {string} query - the query to search for, this is directly passed as q query.
+   * @param {boolean} strict - whether to disable fuzzy search and enable strict mode.
+   * @param {string} ordering - see Deezer API docs for possible values..
+   * @param {Object} advancedParams - Additional parameters to pass.
+   * @param {string} advancedParams.artist - The artist to search for
+   * @param {string} advancedParams.album - The album to search for
+   * @param {string} advancedParams.track - The track to search for
+   * @param {string} advancedParams.label - The label to search for
+   * @param {number} advancedParams.dur_min - The minimum duration of the track
+   * @param {number} advancedParams.dur_max - The maximum duration of the track
+   * @param {number} advancedParams.bpm_min - The minimum BPM of the track
+   * @param {number} advancedParams.bpm_max - The maximum BPM of the track
+   *
+   * @returns {@link PaginatedList} of {@link Track} - A list of tracks.
+   */
+  async search(
+    query: string = "",
+    strict?: boolean,
+    ordering?: string,
+    advancedParams: {
+      artist?: string;
+      album?: string;
+      track?: string;
+      label?: string;
+      dur_min?: number;
+      dur_max?: number;
+      bpm_min?: number;
+      bpm_max?: number;
+    } = {},
+  ): Promise<PaginatedList<Track>> {
+    return this._search<Track>("", query, strict, ordering, advancedParams);
+  }
+
+  /**
+   * @group Search
+   * 
+   * Search albums matching the given query.
+   *
+   * @param query - the query to search for, this is directly passed as q query.
+   * @param strict - whether to disable fuzzy search and enable strict mode.
+   * @param ordering - see Deezer API docs for possible values.
+   */
+  async searchAlbums(
+    query: string = "",
+    strict?: boolean,
+    ordering?: string,
+  ): Promise<PaginatedList<Album>> {
+    return this._search<Album>("album", query, strict, ordering);
+  }
+
+  /**
+   * @group Search - Search artists matching the given query.
+   * 
+   * 
+   *
+   * @param query - the query to search for, this is directly passed as q query.
+   * @param strict - whether to disable fuzzy search and enable strict mode.
+   * @param ordering - see Deezer API docs for possible values.
+   */
+  async searchArtists(
+    query: string = "",
+    strict?: boolean,
+    ordering?: string,
+  ): Promise<PaginatedList<Artist>> {
+    return this._search<Artist>("artist", query, strict, ordering);
+  }
+
+  /**
+   * @group Search
+   * 
+   * Search playlists matching the given query.
+   *
+   * @param query - the query to search for, this is directly passed as q query.
+   * @param strict - whether to disable fuzzy search and enable strict mode.
+   * @param ordering - see Deezer API docs for possible values.
+   */
+  async searchPlaylists(
+    query: string = "",
+    strict?: boolean,
+    ordering?: string,
+  ): Promise<PaginatedList<Playlist>> {
+    return this._search<Playlist>("playlist", query, strict, ordering);
   }
 }
