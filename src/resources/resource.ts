@@ -90,15 +90,6 @@ export class Resource {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (this as any)[fieldName] === undefined
     ) {
-      const inferredValue = this._inferMissingField(fieldName);
-
-      if (inferredValue !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (this as any)[fieldName] = inferredValue;
-        this._fields.push(fieldName);
-        return inferredValue as T;
-      }
-
       // If not inferred and not fetched yet, try to get the full resource
       if (!this._fetched) {
         const fullResource = await this.get();
@@ -130,11 +121,6 @@ export class Resource {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (this as any)[fieldName] as T;
-  }
-
-  // eslint-disable-next-line
-  protected _inferMissingField(fieldName: string): any {
-    return undefined;
   }
 
   /**
