@@ -5,8 +5,8 @@ import { Resource } from "./resource";
 
 /**
  * To work with Deezer editorial objects.
- * 
- * @see the {@link https://developers.deezer.com/api/editorial | Deezer Editorial API Documentation} 
+ *
+ * @see the {@link https://developers.deezer.com/api/editorial | Deezer Editorial API Documentation}
  * for more details about each field.
  */
 export class Editorial extends Resource {
@@ -19,7 +19,7 @@ export class Editorial extends Resource {
 
   /**
    * Get a list of albums selected every week by the Deezer Team.
-   * 
+   *
    * @returns {Promise<Album[]>} - list of {@link Album} instances.
    */
   async getSelection(): Promise<Album[]> {
@@ -28,7 +28,7 @@ export class Editorial extends Resource {
 
   /**
    * Get top charts for tracks, albums, artists and playlists.
-   * 
+   *
    * @returns {Promise<Chart>} - a {@link Chart} instances.
    */
   async getChart(): Promise<Chart> {
@@ -37,10 +37,12 @@ export class Editorial extends Resource {
 
   /**
    * Get the new releases per genre for the current country.
-   * 
+   *
    * @returns {Promise<PaginatedList<Album>>} - a {@link PaginatedList} of {@link Album} instances.
    */
-  async getReleases(params: Record<string, string>): Promise<PaginatedList<Album>> {
+  async getReleases(
+    params: Record<string, string>,
+  ): Promise<PaginatedList<Album>> {
     return this.getPaginatedList<Album>("releases", params);
   }
 }

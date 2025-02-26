@@ -28,46 +28,56 @@ export class User extends Resource {
 
   /**
    * Get user's favorite albums.
-   * 
+   *
    * @returns {Promise<PaginatedList<Album>>} - a {@link PaginatedList} of {@link Album} instances.
    */
-  async getAlbums(params?: Record<string, string>): Promise<PaginatedList<Album>> {
+  async getAlbums(
+    params?: Record<string, string>,
+  ): Promise<PaginatedList<Album>> {
     return this.getPaginatedList<Album>("albums", params);
   }
 
   /**
    *  Get user's favorite artists.
-   * 
+   *
    * @returns {Promise<PaginatedList<Artist>>} - a {@link PaginatedList} of {@link Artist} instances.
    */
-  async getArtists(params?: Record<string, string>): Promise<PaginatedList<Artist>> {
+  async getArtists(
+    params?: Record<string, string>,
+  ): Promise<PaginatedList<Artist>> {
     return this.getPaginatedList<Artist>("artists", params);
   }
 
   /**
    * Get user's followings.
-   * 
+   *
    * @returns {Promise<PaginatedList<User>>} - a {@link PaginatedList} of {@link User} instances.
    */
-  async getFollowers(params?: Record<string, string>): Promise<PaginatedList<User>> {
+  async getFollowers(
+    params?: Record<string, string>,
+  ): Promise<PaginatedList<User>> {
     return this.getPaginatedList<User>("followers", params);
   }
 
   /**
    * Get user's followers.
-   * 
+   *
    * @returns {Promise<PaginatedList<User>>} - a {@link PaginatedList} of {@link User} instances.
    */
-  async getFollowings(params?: Record<string, string>): Promise<PaginatedList<User>> {
+  async getFollowings(
+    params?: Record<string, string>,
+  ): Promise<PaginatedList<User>> {
     return this.getPaginatedList<User>("followings", params);
   }
 
   /**
    * Get user's public playlists.
-   * 
+   *
    * @returns {Promise<PaginatedList<Playlist>>} - a {@link PaginatedList} of {@link Playlist} instances.
    */
-  async getPlaylists(params?: Record<string, string>): Promise<PaginatedList<Playlist>> {
+  async getPlaylists(
+    params?: Record<string, string>,
+  ): Promise<PaginatedList<Playlist>> {
     return this.getPaginatedList<Playlist>("playlists", params);
   }
 }

@@ -6,8 +6,8 @@ import { Track } from "./track";
 
 /**
  * To work with Deezer artist objects.
- * 
- * @see the {@link https://developers.deezer.com/api/artist | Deezer Artist API Documentation} 
+ *
+ * @see the {@link https://developers.deezer.com/api/artist | Deezer Artist API Documentation}
  * for more details about each field.
  */
 export class Artist extends Resource {
@@ -27,18 +27,16 @@ export class Artist extends Resource {
 
   /**
    * Get the top tracks of an artist.
-   * 
+   *
    * @returns {Promise<PaginatedList<Track>>} - a {@link PaginatedList} of {@link Track} instances.
    */
-  async getTop(
-    params?: Record<string, string>,
-  ): Promise<PaginatedList<Track>> {
+  async getTop(params?: Record<string, string>): Promise<PaginatedList<Track>> {
     return this.getPaginatedList<Track>("top", params);
   }
 
   /**
    * Get a list of related artists.
-   * 
+   *
    * @returns {Promise<PaginatedList<Artist>>} - a {@link PaginatedList} of {@link Artist} instances.
    */
   async getRelated(
@@ -49,7 +47,7 @@ export class Artist extends Resource {
 
   /**
    * Get a list of tracks.
-   * 
+   *
    * @returns {Promise<Track[]>} - list of {@link Track} instances.
    */
   async getRadio(params?: Record<string, string>): Promise<Track[]> {
@@ -58,7 +56,7 @@ export class Artist extends Resource {
 
   /**
    * Get a list of artist's albums.
-   * 
+   *
    * @returns {Promise<PaginatedList<Album>>} - a {@link PaginatedList} of {@link Album} instances.
    */
   public async getAlbums(
@@ -69,7 +67,7 @@ export class Artist extends Resource {
 
   /**
    * Get a list of artist's playlists.
-   * 
+   *
    * @returns {Promise<PaginatedList<Playlist>>} - a {@link PaginatedList} of {@link Playlist} instances.
    */
   public async getPlaylists(

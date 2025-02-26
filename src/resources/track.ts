@@ -45,7 +45,7 @@ export class Track extends Resource {
 
   /**
    * Get the artist of the Track.
-   * 
+   *
    * @returns {Promise<Artist>} - the class {@link Artist} of the Track.
    */
   async getArtist(): Promise<Artist> {
@@ -54,7 +54,7 @@ export class Track extends Resource {
 
   /**
    * Get the album of the Track.
-   * 
+   *
    * @returns {Promise<Album>} - the class {@link Album} of the Track.
    */
   async getAlbum(): Promise<Album> {

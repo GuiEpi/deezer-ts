@@ -4,8 +4,8 @@ import { Resource } from "./resource";
 
 /**
  * To work with Deezer episode objects.
- * 
- * @see the {@link https://developers.deezer.com/api/episode | Deezer Episode API Documentation} 
+ *
+ * @see the {@link https://developers.deezer.com/api/episode | Deezer Episode API Documentation}
  * for more details about each field.
  */
 export class Episode extends Resource {

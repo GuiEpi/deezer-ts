@@ -7,8 +7,8 @@ import { Track } from "./track";
 
 /**
  * To work with Deezer album objects.
- * 
- * @see the {@link https://developers.deezer.com/api/album | Deezer Album API Documentation} 
+ *
+ * @see the {@link https://developers.deezer.com/api/album | Deezer Album API Documentation}
  * for more details about each field.
  */
 export class Album extends Resource {
@@ -62,7 +62,7 @@ export class Album extends Resource {
 
   /**
    * Get the artist of the Album.
-   * 
+   *
    * @returns {Promise<Artist>} - the class {@link Artist} of the Album.
    */
   async getArtist(): Promise<Artist> {
@@ -72,7 +72,7 @@ export class Album extends Resource {
 
   /**
    * Get a list of album's tracks.
-   * 
+   *
    * @returns {Promise<PaginatedList<Track>>} - a {@link PaginatedList} of {@link Track}.
    */
   async getTracks(

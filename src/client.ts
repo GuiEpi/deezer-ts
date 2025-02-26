@@ -29,23 +29,23 @@ import {
 /**
  * @category API Reference
  * @subcategory Reference
- * 
+ *
  * A client to retrieve some basic infos about Deezer resources.
- * 
- * Create a client instance with the given options. 
+ *
+ * Create a client instance with the given options.
  * Options should be passed in to the constructor as kwargs.
- * 
+ *
  * @example
  * ```ts
  * import { Client } from "deezer-ts";
  * client = new Client();
  * ```
- * This client provides several methods to retrieve the content 
+ * This client provides several methods to retrieve the content
  * most kinds of Deezer objects, based on their json structure.
- * 
- * Headers can be forced by using the `headers` kwarg. 
+ *
+ * Headers can be forced by using the `headers` kwarg.
  * For example, use `Accept-Language` header to force the output language.
- * 
+ *
  * @example
  * ```ts
  * import { Client } from "deezer-ts";
@@ -61,7 +61,7 @@ export class Client {
 
   /**
    * Create a new client instance.
-   * 
+   *
    * @param {Record<string, string>} [headers] - Additional headers to pass.
    */
   constructor(private headers?: Record<string, string>) {}
@@ -666,7 +666,7 @@ export class Client {
     console.log(path ? `search/${path}` : "search", {
       q: queryParts.join(" "),
       ...optionalParams,
-    })
+    });
 
     return this.getPaginatedList<T>(path ? `search/${path}` : "search", {
       q: queryParts.join(" "),
@@ -676,7 +676,7 @@ export class Client {
 
   /**
    * @group Search
-   * 
+   *
    * Search tracks.
    *
    * Advanced search is available by either formatting the query yourself or
@@ -717,7 +717,7 @@ export class Client {
 
   /**
    * @group Search
-   * 
+   *
    * Search albums matching the given query.
    *
    * @param query - the query to search for, this is directly passed as q query.
@@ -734,8 +734,8 @@ export class Client {
 
   /**
    * @group Search - Search artists matching the given query.
-   * 
-   * 
+   *
+   *
    *
    * @param query - the query to search for, this is directly passed as q query.
    * @param strict - whether to disable fuzzy search and enable strict mode.
@@ -751,7 +751,7 @@ export class Client {
 
   /**
    * @group Search
-   * 
+   *
    * Search playlists matching the given query.
    *
    * @param query - the query to search for, this is directly passed as q query.

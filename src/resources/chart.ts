@@ -8,8 +8,8 @@ import { PaginatedList } from "../pagination";
 
 /**
  * To work with Deezer chart objects.
- * 
- * @see the {@link https://developers.deezer.com/api/chart | Deezer Chart API Documentation} 
+ *
+ * @see the {@link https://developers.deezer.com/api/chart | Deezer Chart API Documentation}
  * for more details about each field.
  */
 export class Chart extends Resource {
@@ -22,7 +22,7 @@ export class Chart extends Resource {
 
   /**
    *  Return the chart for tracks.
-   * 
+   *
    * @returns {Promise<PaginatedList<Track>>} - a {@link PaginatedList} of {@link Track} instances.
    */
   async getTracks(
@@ -33,7 +33,7 @@ export class Chart extends Resource {
 
   /**
    * Return the chart for albums.
-   * 
+   *
    * @returns {Promise<PaginatedList<Album>>} - a {@link PaginatedList} of {@link Album} instances.
    */
   async getAlbums(
@@ -44,7 +44,7 @@ export class Chart extends Resource {
 
   /**
    * Return the chart for artists.
-   * 
+   *
    * @returns {Promise<PaginatedList<Artist>>} - a {@link PaginatedList} of {@link Artist} instances.
    */
   async getArtists(
@@ -55,7 +55,7 @@ export class Chart extends Resource {
 
   /**
    * Return the chart for playlists.
-   * 
+   *
    * @returns {Promise<PaginatedList<Playlist>>} - a {@link PaginatedList} of {@link Playlist} instances.
    */
   async getPlaylists(
@@ -66,7 +66,7 @@ export class Chart extends Resource {
 
   /**
    * Return the chart for podcasts.
-   * 
+   *
    * @returns {Promise<PaginatedList<Podcast>>} - a {@link PaginatedList} of {@link Podcast} instances.
    */
   async getPodcasts(

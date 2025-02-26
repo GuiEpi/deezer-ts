@@ -15,9 +15,9 @@ export class Radio extends Resource {
 
   /**
    * Get first 40 tracks in the radio.
-   * 
+   *
    * Note that this endpoint is NOT paginated.
-   * 
+   *
    * @returns {Promise<Track[]>} - list of {@link Track} instances.
    */
   async getTracks(): Promise<Track[]> {

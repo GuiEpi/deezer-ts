@@ -17,10 +17,12 @@ export class Podcast extends Resource {
 
   /**
    * Get episodes from a podcast.
-   * 
+   *
    * @returns {Promise<PaginatedList<Episode>>} - a {@link PaginatedList} of {@link Episode} instances.
    */
-  async getEpisodes(params?: Record<string, string>): Promise<PaginatedList<Episode>> {
+  async getEpisodes(
+    params?: Record<string, string>,
+  ): Promise<PaginatedList<Episode>> {
     return this.getPaginatedList<Episode>("episodes", params);
   }
 }
