@@ -5,3 +5,4 @@
   - [] add specific functions to different resources
   - [] docs using typedoc
   - [] ci
+  - [] add tests
