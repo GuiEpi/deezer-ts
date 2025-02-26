@@ -5,6 +5,12 @@ import { Genre } from "./genre";
 import { Resource } from "./resource";
 import { Track } from "./track";
 
+/**
+ * To work with Deezer album objects.
+ * 
+ * @see the {@link https://developers.deezer.com/api/album | Deezer Album API Documentation} 
+ * for more details about each field.
+ */
 export class Album extends Resource {
   title!: string;
   upc?: string;
@@ -40,20 +46,35 @@ export class Album extends Resource {
 
   role?: string;
 
-  private parse_release_date(params: string) {
+  /**
+   * @internal
+   */
+  private _parse_release_date(params: string) {
     return parseDate(params);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private parse_contributors(rawValue: Record<string, any>[]): Artist[] {
+  /**
+   * @internal
+   */
+  private _parse_contributors(rawValue: Record<string, any>[]): Artist[] {
     return rawValue.map((val) => new Artist(this.client, val));
   }
 
+  /**
+   * Get the artist of the Album.
+   * 
+   * @returns {Promise<Artist>} - the class {@link Artist} of the Album.
+   */
   async getArtist(): Promise<Artist> {
     const artist = await this.ensureField<Artist>("artist");
     return this.client.getArtist(artist.id);
   }
 
+  /**
+   * Get a list of album's tracks.
+   * 
+   * @returns {Promise<PaginatedList<Track>>} - a {@link PaginatedList} of {@link Track}.
+   */
   async getTracks(
     params?: Record<string, string>,
   ): Promise<PaginatedList<Track>> {

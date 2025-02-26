@@ -6,6 +6,12 @@ import { Album } from "./album";
 import { Track } from "./track";
 import { PaginatedList } from "../pagination";
 
+/**
+ * To work with Deezer chart objects.
+ * 
+ * @see the {@link https://developers.deezer.com/api/chart | Deezer Chart API Documentation} 
+ * for more details about each field.
+ */
 export class Chart extends Resource {
   tracks!: Track[] | [];
   albums!: Album[] | [];
@@ -15,12 +21,11 @@ export class Chart extends Resource {
   type: string = "chart";
 
   /**
-   * Return the chart for tracks.
-   *
-   * @param params Record<string, string>
-   * @returns Promise<PaginatedList<Track>>
+   *  Return the chart for tracks.
+   * 
+   * @returns {Promise<PaginatedList<Track>>} - a {@link PaginatedList} of {@link Track} instances.
    */
-  public async getTracks(
+  async getTracks(
     params?: Record<string, string>,
   ): Promise<PaginatedList<Track>> {
     return this.getPaginatedList<Track>("tracks", params);
@@ -28,10 +33,10 @@ export class Chart extends Resource {
 
   /**
    * Return the chart for albums.
-   * @param params Record<string, string>
-   * @returns Promise<PaginatedList<Album>>
+   * 
+   * @returns {Promise<PaginatedList<Album>>} - a {@link PaginatedList} of {@link Album} instances.
    */
-  public async getAlbums(
+  async getAlbums(
     params?: Record<string, string>,
   ): Promise<PaginatedList<Album>> {
     return this.getPaginatedList<Album>("albums", params);
@@ -39,23 +44,34 @@ export class Chart extends Resource {
 
   /**
    * Return the chart for artists.
-   * @param params Record<string, string>
-   * @returns Promise<PaginatedList<Artist>>
+   * 
+   * @returns {Promise<PaginatedList<Artist>>} - a {@link PaginatedList} of {@link Artist} instances.
    */
-  public async getArtists(
+  async getArtists(
     params?: Record<string, string>,
   ): Promise<PaginatedList<Artist>> {
     return this.getPaginatedList<Artist>("artists", params);
   }
 
   /**
-   * Return the chart for podcasts.
-   * @param params Record<string, string>
-   * @returns Promise<PaginatedList<Podcast>>
+   * Return the chart for playlists.
+   * 
+   * @returns {Promise<PaginatedList<Playlist>>} - a {@link PaginatedList} of {@link Playlist} instances.
    */
-  public async getPlaylists(
+  async getPlaylists(
     params?: Record<string, string>,
   ): Promise<PaginatedList<Playlist>> {
     return this.getPaginatedList<Playlist>("playlists", params);
+  }
+
+  /**
+   * Return the chart for podcasts.
+   * 
+   * @returns {Promise<PaginatedList<Podcast>>} - a {@link PaginatedList} of {@link Podcast} instances.
+   */
+  async getPodcasts(
+    params?: Record<string, string>,
+  ): Promise<PaginatedList<Podcast>> {
+    return this.getPaginatedList<Podcast>("podcasts", params);
   }
 }

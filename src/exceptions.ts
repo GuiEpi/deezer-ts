@@ -1,3 +1,6 @@
+/**
+ * Base exception for API errors.
+ */
 export class DeezerAPIException extends Error {
   constructor(message: string) {
     super(message);
@@ -5,6 +8,9 @@ export class DeezerAPIException extends Error {
   }
 }
 
+/**
+ * A request failing with this might work if retried.
+ */
 export class DeezerRetryableException extends DeezerAPIException {
   constructor(message: string) {
     super(message);
@@ -12,6 +18,9 @@ export class DeezerRetryableException extends DeezerAPIException {
   }
 }
 
+/**
+ * Specialization wrapping HTTP errors.
+ */
 export class DeezerHTTPError extends DeezerAPIException {
   constructor(response: Response) {
     super(`HTTP ${response.status}: ${response.statusText}`);
@@ -32,6 +41,9 @@ export class DeezerHTTPError extends DeezerAPIException {
   }
 }
 
+/**
+ * An HTTP error due to a potentially temporary issue.
+ */
 export class DeezerRetryableHTTPError extends DeezerRetryableException {
   constructor(response: Response) {
     super(`Retryable HTTP ${response.status}: ${response.statusText}`);
@@ -39,6 +51,9 @@ export class DeezerRetryableHTTPError extends DeezerRetryableException {
   }
 }
 
+/**
+ * A HTTP error cause by permission denied error.
+ */
 export class DeezerForbiddenError extends DeezerHTTPError {
   constructor(response: Response) {
     super(response);
@@ -46,6 +61,9 @@ export class DeezerForbiddenError extends DeezerHTTPError {
   }
 }
 
+/**
+ * For 404 HTTP errors.
+ */
 export class DeezerNotFoundError extends DeezerHTTPError {
   constructor(response: Response) {
     super(response);
@@ -53,6 +71,9 @@ export class DeezerNotFoundError extends DeezerHTTPError {
   }
 }
 
+/**
+ * A request failing with this might work if retried.
+ */
 export class DeezerErrorResponse extends DeezerAPIException {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(error: any) {
@@ -61,6 +82,9 @@ export class DeezerErrorResponse extends DeezerAPIException {
   }
 }
 
+/**
+ * A functional error when the API doesn't accept the request.
+ */
 export class DeezerUnknownResource extends DeezerAPIException {
   constructor(message: string) {
     super(message);

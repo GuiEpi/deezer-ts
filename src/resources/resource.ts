@@ -14,7 +14,7 @@ export class Resource {
     this.client = client;
     for (const fieldName of Object.keys(json)) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const parseFunc = (this as any)[`parse_${fieldName}`];
+      const parseFunc = (this as any)[`_parse_${fieldName}`];
       if (typeof parseFunc === "function") {
         json[fieldName] = parseFunc.call(this, json[fieldName]);
       }
