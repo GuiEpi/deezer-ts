@@ -1,3 +1,4 @@
+import { PaginatedList } from "../pagination";
 import { Resource } from "./resource";
 import { Track } from "./track";
 import { User } from "./user";
@@ -22,4 +23,22 @@ export class Playlist extends Resource {
   checksum!: string;
   creator!: User;
   tracks?: Track[];
+
+  /**
+   * Get tracks from a playlist.
+   * 
+   * @returns {Promise<PaginatedList<Track>>} - a {@link PaginatedList} of {@link Track} instances.
+   */
+  async getTracks(params?: Record<string, string>): Promise<PaginatedList<Track>> {
+    return this.getPaginatedList<Track>("tracks", params);
+  }
+
+  /**
+   * Get fans from a playlist.
+   * 
+   * @returns {Promise<PaginatedList<User>>} - a {@link PaginatedList} of {@link User} instances.
+   */
+  async getFans(params?: Record<string, string>): Promise<PaginatedList<User>> {
+    return this.getPaginatedList<User>("fans", params);
+  }
 }
