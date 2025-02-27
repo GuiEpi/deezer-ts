@@ -4,6 +4,9 @@ import { Chart } from "./chart";
 import { Resource } from "./resource";
 
 /**
+ * @module API Reference
+ * @category Resources
+ *
  * To work with Deezer editorial objects.
  *
  * @see the {@link https://developers.deezer.com/api/editorial | Deezer Editorial API Documentation}
@@ -32,7 +35,7 @@ export class Editorial extends Resource {
    * @returns {Promise<Chart>} - a {@link Chart} instances.
    */
   async getChart(): Promise<Chart> {
-    return this.getRelation<Chart>("chart", Chart);
+    return this.getRelation<Chart>("charts", Chart);
   }
 
   /**
