@@ -4,6 +4,16 @@ import { Artist } from "./artist";
 import { Playlist } from "./playlist";
 import { Resource } from "./resource";
 
+/**
+ * @module API Reference
+ * @category Resources
+ *
+ * To work with Deezer user objects.
+ *
+ * @see the {@link https://developers.deezer.com/api/user | Deezer User API Documentation}
+ * for more details about each field.
+ */
+
 export class User extends Resource {
   name!: string;
   lastname?: string;

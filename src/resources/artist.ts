@@ -5,6 +5,9 @@ import { Resource } from "./resource";
 import { Track } from "./track";
 
 /**
+ * @module API Reference
+ * @category Resources
+ *
  * To work with Deezer artist objects.
  *
  * @see the {@link https://developers.deezer.com/api/artist | Deezer Artist API Documentation}

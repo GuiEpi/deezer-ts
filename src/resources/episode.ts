@@ -3,6 +3,9 @@ import { Podcast } from "./podcast";
 import { Resource } from "./resource";
 
 /**
+ * @module API Reference
+ * @category Resources
+ *
  * To work with Deezer episode objects.
  *
  * @see the {@link https://developers.deezer.com/api/episode | Deezer Episode API Documentation}

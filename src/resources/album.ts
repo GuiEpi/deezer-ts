@@ -6,6 +6,9 @@ import { Resource } from "./resource";
 import { Track } from "./track";
 
 /**
+ * @module API Reference
+ * @category Resources
+ *
  * To work with Deezer album objects.
  *
  * @see the {@link https://developers.deezer.com/api/album | Deezer Album API Documentation}
@@ -78,6 +81,6 @@ export class Album extends Resource {
   async getTracks(
     params?: Record<string, string>,
   ): Promise<PaginatedList<Track>> {
-    return this.getPaginatedList<Track>("track", params);
+    return this.getPaginatedList<Track>("tracks", params);
   }
 }

@@ -7,6 +7,9 @@ import { Track } from "./track";
 import { PaginatedList } from "../pagination";
 
 /**
+ * @module API Reference
+ * @category Resources
+ *
  * To work with Deezer chart objects.
  *
  * @see the {@link https://developers.deezer.com/api/chart | Deezer Chart API Documentation}
@@ -18,7 +21,7 @@ export class Chart extends Resource {
   artists!: Artist[] | [];
   playlists!: Playlist[] | [];
   podcasts!: Podcast[] | [];
-  type: string = "chart";
+  override type: string = "chart";
 
   /**
    *  Return the chart for tracks.

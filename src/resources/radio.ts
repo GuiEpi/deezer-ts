@@ -1,6 +1,16 @@
 import { Resource } from "./resource";
 import { Track } from "./track";
 
+/**
+ * @module API Reference
+ * @category Resources
+ *
+ * To work with Deezer radio objects.
+ *
+ * @see the {@link https://developers.deezer.com/api/radio | Deezer Radio API Documentation}
+ * for more details about each field.
+ */
+
 export class Radio extends Resource {
   title!: string;
   description!: string;

@@ -5,6 +5,9 @@ import { Radio } from "./radio";
 import { Resource } from "./resource";
 
 /**
+ * @module API Reference
+ * @category Resources
+ *
  * To work with Deezer genre objects.
  *
  * @see the {@link https://developers.deezer.com/api/genre | Deezer Genre API Documentation}

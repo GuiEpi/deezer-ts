@@ -3,6 +3,16 @@ import { Resource } from "./resource";
 import { Track } from "./track";
 import { User } from "./user";
 
+/**
+ * @module API Reference
+ * @category Resources
+ *
+ * To work with Deezer playlist objects.
+ *
+ * @see the {@link https://developers.deezer.com/api/playlist | Deezer Playlist API Documentation}
+ * for more details about each field.
+ */
+
 export class Playlist extends Resource {
   title!: string;
   description!: string;

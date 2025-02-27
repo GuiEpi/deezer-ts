@@ -1,6 +1,13 @@
 import { Client } from "../client";
 import { PaginatedList } from "../pagination";
 
+/**
+ * @module API Reference
+ * @category Resources
+ *
+ * Base class for all Deezer resources.
+ * All resource classes inherit from this class.
+ */
 export class Resource {
   protected readonly client: Client;
   protected _fields: string[];

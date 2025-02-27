@@ -1,6 +1,12 @@
 import { Client } from "./client";
 import { Resource } from "./resources";
 
+/**
+ * @module API Reference
+ *
+ * A paginated list of resources from the Deezer API.
+ * This class implements AsyncIterable to allow for easy iteration over all items.
+ */
 export class PaginatedList<T extends Resource> implements AsyncIterable<T> {
   private elements: T[] = [];
   private nextPath: string | null;
@@ -87,7 +93,7 @@ export class PaginatedList<T extends Resource> implements AsyncIterable<T> {
    */
   public async get(index: number): Promise<T> {
     const items = await this.slice(index, index + 1);
-    if (items.length === 0) {
+    if (items.length === 0 || !items[0]) {
       throw new Error(`Index ${index} is out of bounds`);
     }
     return items[0];
