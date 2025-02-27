@@ -52,7 +52,7 @@ import {
  * client = new Client({ headers: { "Accept-Language": "en" } });
  * ```
  * @param {Record<string, string>} headers - Additional headers to pass.
- * 
+ *
  * @category Client
  */
 export class Client {
@@ -117,6 +117,24 @@ export class Client {
     Client.requestQueue.push({ timestamp: Date.now() });
   }
 
+  /**
+   * @internal
+   * Retries an operation with exponential backoff when encountering retryable errors.
+   *
+   * This method implements an exponential backoff strategy for retrying failed operations:
+   * - Initial delay is baseDelay (default 2000ms)
+   * - Each retry doubles the delay
+   * - Adds random jitter (75-125% of calculated delay) to prevent thundering herd
+   * - Only retries on quota exceeded or other retryable errors
+   *
+   * @param {() => Promise<T>} operation - The async operation to retry
+   * @param {number} maxRetries - Maximum number of retry attempts (default: 3)
+   * @param {number} baseDelay - Base delay in milliseconds before first retry (default: 2000)
+   * @returns {Promise<T>} The result of the operation if successful
+   * @throws {Error} The last error encountered if all retries fail
+   * @throws {Error} Non-retryable errors immediately without retry
+   * @template T - The return type of the operation
+   */
   private async retryWithBackoff<T>(
     operation: () => Promise<T>,
     maxRetries: number = 3,
