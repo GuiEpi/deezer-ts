@@ -1,3 +1,41 @@
 {
-
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "deezer-ts",
+  "entryPoints": ["src/index.ts"],
+  "out": "./docs-site",
+  "sort": ["source-order"],
+  // "categorizeByGroup": true,
+  "searchCategoryBoosts": {
+      "Component": 2,
+      "Model": 1.2
+  },
+  "searchGroupBoosts": {
+      "Classes": 1.5
+  },
+  // "categoryOrder": ["API Reference", "*"],
+  "navigation": {
+      // "includeCategories": true,
+      // "includeGroups": true
+  },
+  "hostedBaseUrl": "https://deezer-ts.guics.st/",
+  "navigationLinks": {
+      "Docs": "https://deezer-ts.guics.st/",
+      "API": "https://deezer-ts.guics.st/api/index.html",
+      "GitHub": "https://github.com/GuiEpi/deezer-ts"
+  },
+  "projectDocuments": ["docs/*.md"],
+  "highlightLanguages": [
+      "typescript",
+      "tsx",
+      "css",
+      "json",
+      "jsonc",
+      "python",
+      "yaml",
+      "markdown"
+  ],
+  "markdownItOptions": {
+      "html": true
+  },
+  "suppressCommentWarningsInDeclarationFiles": true
 }
