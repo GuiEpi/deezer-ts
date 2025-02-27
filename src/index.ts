@@ -2,7 +2,7 @@
  * A TypeScript wrapper for the Deezer API.
  *
  * @packageDocumentation
- * 
+ *
  * @category API Reference
  */
 

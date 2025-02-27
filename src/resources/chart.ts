@@ -11,7 +11,7 @@ import { PaginatedList } from "../pagination";
  *
  * @see the {@link https://developers.deezer.com/api/chart | Deezer Chart API Documentation}
  * for more details about each field.
- * 
+ *
  * @extends Resource
  * @category Resources
  */

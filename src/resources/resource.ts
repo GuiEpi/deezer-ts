@@ -4,7 +4,7 @@ import { PaginatedList } from "../pagination";
 /**
  * Base class for all Deezer resources.
  * All resource classes inherit from this class.
- * 
+ *
  * @category Resources
  */
 export class Resource {

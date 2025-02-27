@@ -9,7 +9,7 @@ import { Resource } from "./resource";
  *
  * @see the {@link https://developers.deezer.com/api/genre | Deezer Genre API Documentation}
  * for more details about each field.
- * 
+ *
  * @extends Resource
  * @category Resources
  */

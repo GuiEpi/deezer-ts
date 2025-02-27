@@ -7,7 +7,7 @@ import { Resource } from "./resource";
  *
  * @see the {@link https://developers.deezer.com/api/podcast | Deezer Podcast API Documentation}
  * for more details about each field.
- * 
+ *
  * @extends Resource
  * @category Resources
  */

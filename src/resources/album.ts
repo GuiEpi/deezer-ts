@@ -10,7 +10,7 @@ import { Track } from "./track";
  *
  * @see the {@link https://developers.deezer.com/api/album | Deezer Album API Documentation}
  * for more details about each field.
- * 
+ *
  * @extends Resource
  * @category Resources
  */

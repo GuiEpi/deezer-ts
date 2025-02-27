@@ -9,7 +9,7 @@ import { Track } from "./track";
  *
  * @see the {@link https://developers.deezer.com/api/artist | Deezer Artist API Documentation}
  * for more details about each field.
- * 
+ *
  * @extends Resource
  * @category Resources
  */

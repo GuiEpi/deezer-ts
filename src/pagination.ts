@@ -4,7 +4,7 @@ import { Resource } from "./resources";
 /**
  * A paginated list of resources from the Deezer API.
  * This class implements AsyncIterable to allow for easy iteration over all items.
- * 
+ *
  * @category PaginatedList
  */
 export class PaginatedList<T extends Resource> implements AsyncIterable<T> {
