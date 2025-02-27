@@ -1,6 +1,9 @@
 import {
+  DeezerAPIException,
   DeezerErrorResponse,
   DeezerHTTPError,
+  DeezerQuotaExceededError,
+  DeezerRetryableException,
   DeezerUnknownResource,
 } from "./exceptions";
 import { PaginatedList } from "./pagination";
@@ -59,6 +62,10 @@ export class Client {
    */
   private baseUrl: string = "https://api.deezer.com";
 
+  private static requestQueue: { timestamp: number }[] = [];
+  private static readonly QUOTA_WINDOW = 5000; // 5 seconds in ms
+  private static readonly QUOTA_LIMIT = 50; // 50 requests per 5 seconds
+
   /**
    * Create a new client instance.
    *
@@ -86,6 +93,54 @@ export class Client {
     track: Track,
     user: User,
   };
+
+  /**
+   * @internal
+   * Ensures we don't exceed Deezer's rate limit of 50 requests per 5 seconds
+   */
+  private async enforceRateLimit(): Promise<void> {
+    const now = Date.now();
+    // Remove requests older than QUOTA_WINDOW
+    Client.requestQueue = Client.requestQueue.filter(
+      (req) => now - req.timestamp < Client.QUOTA_WINDOW,
+    );
+
+    if (Client.requestQueue.length >= Client.QUOTA_LIMIT) {
+      const oldestRequest = Client.requestQueue[0];
+      const waitTime = Client.QUOTA_WINDOW - (now - oldestRequest.timestamp);
+      if (waitTime > 0) {
+        await new Promise((resolve) => setTimeout(resolve, waitTime));
+      }
+    }
+
+    Client.requestQueue.push({ timestamp: Date.now() });
+  }
+
+  private async retryWithBackoff<T>(
+    operation: () => Promise<T>,
+    maxRetries: number = 3,
+    baseDelay: number = 2000,
+  ): Promise<T> {
+    let lastError;
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+      try {
+        return await operation();
+      } catch (error) {
+        if (
+          error instanceof DeezerQuotaExceededError ||
+          error instanceof DeezerRetryableException
+        ) {
+          lastError = error;
+          const delay =
+            baseDelay * Math.pow(2, attempt) * (0.75 + Math.random() * 0.5);
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          continue;
+        }
+        throw error;
+      }
+    }
+    throw lastError;
+  }
 
   /**
    * @internal
@@ -139,7 +194,7 @@ export class Client {
     }
 
     // in case object does not have an id e.g. chart
-    if (!result.id && resourceId !== null) {
+    if (result.id === undefined && resourceId !== null) {
       result.id = resourceId;
     }
 
@@ -167,13 +222,14 @@ export class Client {
       );
     }
 
+    debugger; // Examine final processed result
     return new objectClass(this, result);
   }
 
   /**
    * Make a request to the API and parse the response.
    *
-   * @typeparam T - The type of the response.
+   * @template T - The type of the response.
    * @param {string} method - The HTTP method to use.
    * @param {string} path - The path to request.
    * @param {boolean} paginateList - Whether to paginate the response.
@@ -196,7 +252,7 @@ export class Client {
   /**
    * Make a request to the API and parse the response.
    *
-   * @typeparam T - The type of the response.
+   * @template T - The type of the response.
    * @param {string} method - The HTTP method to use.
    * @param {string} path - The path to request.
    * @param {boolean} paginateList - Whether to paginate the response.
@@ -225,38 +281,43 @@ export class Client {
     resourceId?: number,
     params?: Record<string, string>,
   ): Promise<T | GenericPaginatedList<T>> {
-    const url = new URL(`${this.baseUrl}/${path}`);
+    return this.retryWithBackoff(async () => {
+      await this.enforceRateLimit();
+      const url = new URL(`${this.baseUrl}/${path}`);
 
-    if (params) {
-      Object.entries(params).forEach(([key, value]) => {
-        url.searchParams.append(key, String(value));
+      if (params) {
+        Object.entries(params).forEach(([key, value]) => {
+          url.searchParams.append(key, String(value));
+        });
+      }
+
+      const response = await fetch(url, {
+        method,
+        headers: {
+          ...this.headers,
+        },
       });
-    }
 
-    const response = await fetch(url, {
-      method,
-      headers: {
-        ...this.headers,
-      },
+      if (!response.ok) {
+        throw DeezerHTTPError.fromResponse(response);
+      }
+
+      const data = (await response.json()) as
+        | JsonResponse
+        | DeezerResponseError;
+
+      if (data.error) {
+        throw new DeezerErrorResponse(data.error);
+      }
+
+      return this._processJson<T>(
+        data,
+        paginateList,
+        parent,
+        resourceType,
+        resourceId,
+      );
     });
-
-    if (!response.ok) {
-      throw new DeezerHTTPError(response);
-    }
-
-    const data = (await response.json()) as JsonResponse | DeezerResponseError;
-
-    if (data.error) {
-      throw new DeezerErrorResponse(data.error);
-    }
-
-    return this._processJson<T>(
-      data,
-      paginateList,
-      parent,
-      resourceType,
-      resourceId,
-    );
   }
 
   /**
@@ -392,7 +453,6 @@ export class Client {
    *
    * List editorials.
    *
-   * @param {number} editorialId - The id of the editorial to get.
    * @returns {@link PaginatedList} of {@link Editorial} - An editorial object.
    */
   async listEditorials(): Promise<PaginatedList<Editorial>> {
