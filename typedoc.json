@@ -4,38 +4,45 @@
   "entryPoints": ["src/index.ts"],
   "out": "./docs-site",
   "sort": ["source-order"],
-  // "categorizeByGroup": true,
   "searchCategoryBoosts": {
-      "Component": 2,
-      "Model": 1.2
+    "Component": 2,
+    "Model": 1.2,
+    "Exceptions": 1.5
   },
   "searchGroupBoosts": {
-      "Classes": 1.5
+    "Classes": 1.5,
+    "Error Handling": 2
   },
-  // "categoryOrder": ["API Reference", "*"],
+  "categoryOrder": [
+    "Documentation",
+    "API Reference",
+    "Client",
+    "PaginatedList",
+    "Resources",
+    "Errors"
+  ],
   "navigation": {
-      // "includeCategories": true,
-      // "includeGroups": true
+    "includeCategories": true,
   },
   "hostedBaseUrl": "https://deezer-ts.guics.st/",
   "navigationLinks": {
-      "Docs": "https://deezer-ts.guics.st/",
-      "API": "https://deezer-ts.guics.st/api/index.html",
-      "GitHub": "https://github.com/GuiEpi/deezer-ts"
+    "Docs": "https://deezer-ts.guics.st/",
+    "API": "https://deezer-ts.guics.st/api/index.html",
+    "GitHub": "https://github.com/GuiEpi/deezer-ts"
   },
   "projectDocuments": ["docs/*.md"],
   "highlightLanguages": [
-      "typescript",
-      "tsx",
-      "css",
-      "json",
-      "jsonc",
-      "python",
-      "yaml",
-      "markdown"
+    "typescript",
+    "tsx",
+    "css",
+    "json",
+    "jsonc",
+    "python",
+    "yaml",
+    "markdown"
   ],
   "markdownItOptions": {
-      "html": true
+    "html": true
   },
   "suppressCommentWarningsInDeclarationFiles": true
 }
