@@ -7,13 +7,13 @@ import { Track } from "./track";
 import { PaginatedList } from "../pagination";
 
 /**
- * @module API Reference
- * @category Resources
- *
  * To work with Deezer chart objects.
  *
  * @see the {@link https://developers.deezer.com/api/chart | Deezer Chart API Documentation}
  * for more details about each field.
+ * 
+ * @extends Resource
+ * @category Resources
  */
 export class Chart extends Resource {
   tracks!: Track[] | [];

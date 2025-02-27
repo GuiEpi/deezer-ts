@@ -6,13 +6,13 @@ import { Resource } from "./resource";
 import { Track } from "./track";
 
 /**
- * @module API Reference
- * @category Resources
- *
  * To work with Deezer album objects.
  *
  * @see the {@link https://developers.deezer.com/api/album | Deezer Album API Documentation}
  * for more details about each field.
+ * 
+ * @extends Resource
+ * @category Resources
  */
 export class Album extends Resource {
   title!: string;

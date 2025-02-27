@@ -30,9 +30,6 @@ import {
 } from "./types";
 
 /**
- * @category API Reference
- * @subcategory Reference
- *
  * A client to retrieve some basic infos about Deezer resources.
  *
  * Create a client instance with the given options.
@@ -55,6 +52,8 @@ import {
  * client = new Client({ headers: { "Accept-Language": "en" } });
  * ```
  * @param {Record<string, string>} headers - Additional headers to pass.
+ * 
+ * @category Client
  */
 export class Client {
   /**
@@ -335,8 +334,6 @@ export class Client {
   }
 
   /**
-   * @group Album
-   *
    * Get the album with the given id.
    *
    * @param {number} albumId - The id of the album to get.
@@ -347,8 +344,6 @@ export class Client {
   }
 
   /**
-   * @group Artist
-   *
    * Get the artist with the given id.
    *
    * @param {number} artistId - The id of the artist to get.
@@ -359,8 +354,6 @@ export class Client {
   }
 
   /**
-   * @group Chart
-   *
    * Get overall charts for tracks, albums, artists and playlists for the given genre ID.
    *
    * Combine charts of several resources in one endpoint.
@@ -380,8 +373,6 @@ export class Client {
   }
 
   /**
-   * @group Chart
-   *
    * Get top tracks for the given genre id.
    *
    * @param {number} genreId - The genre id, default to `All` genre (genreId = 0).
@@ -392,8 +383,6 @@ export class Client {
   }
 
   /**
-   * @group Chart
-   *
    * Get top albums for the given genre id.
    *
    * @param {number} genreId - The genre id, default to `All` genre (genreId = 0).
@@ -404,8 +393,6 @@ export class Client {
   }
 
   /**
-   * @group Chart
-   *
    * Get top artists for the given genre id.
    *
    * @param {number} genreId - The genre id, default to `All` genre (genreId = 0).
@@ -416,8 +403,6 @@ export class Client {
   }
 
   /**
-   * @group Chart
-   *
    * Get top playlists for the given genre id.
    *
    * @param {number} genreId - The genre id, default to `All` genre (genreId = 0).
@@ -428,8 +413,6 @@ export class Client {
   }
 
   /**
-   * @group Chart
-   *
    * Get top podcasts for the given genre id.
    *
    * @param {number} genreId - The genre id, default to `All` genre (genreId = 0).
@@ -440,8 +423,6 @@ export class Client {
   }
 
   /**
-   * @group Editorial
-   *
    * Get the editorial with the given id.
    *
    * @param {number} editorialId - The id of the editorial to get.
@@ -452,8 +433,6 @@ export class Client {
   }
 
   /**
-   * @group Editorial
-   *
    * List editorials.
    *
    * @returns {@link PaginatedList} of {@link Editorial} - An editorial object.
@@ -463,8 +442,6 @@ export class Client {
   }
 
   /**
-   * @group Episode
-   *
    * Get the episode with the given id.
    *
    * @param {number} episodeId - The id of the episode to get.
@@ -475,8 +452,6 @@ export class Client {
   }
 
   /**
-   * @group Genre
-   *
    * Get the genre with the given id.
    *
    * @param {number} genreId - The id of the genre to get.
@@ -487,8 +462,6 @@ export class Client {
   }
 
   /**
-   * @group Playlist
-   *
    * Get the playlist with the given id.
    *
    * @param {number} playlistId - The id of the playlist to get.
@@ -499,8 +472,6 @@ export class Client {
   }
 
   /**
-   * @group Podcast
-   *
    * Get the podcast with the given id.
    *
    * @param {number} podcastId - The id of the podcast to get.
@@ -511,8 +482,6 @@ export class Client {
   }
 
   /**
-   * @group Radio
-   *
    * Get the radio with the given id.
    *
    * @param {number} radioId - The id of the radio to get.
@@ -523,8 +492,6 @@ export class Client {
   }
 
   /**
-   * @group Radio
-   *
    * List radios.
    *
    * @returns A list of {@link Radio} instances.
@@ -534,8 +501,6 @@ export class Client {
   }
 
   /**
-   * @group Radio
-   *
    * Get the top radios.
    *
    * @returns {@link PaginatedList} of {@link Radio} objects.
@@ -545,8 +510,6 @@ export class Client {
   }
 
   /**
-   * @group Track
-   *
    * Get the track with the given id.
    *
    * @param {number} trackId - The id of the track to get.
@@ -557,8 +520,6 @@ export class Client {
   }
 
   /**
-   * @group User
-   *
    * Get the user with the given id.
    *
    * @param {number} userId - The id of the user to get.
@@ -569,8 +530,6 @@ export class Client {
   }
 
   /**
-   * @group User
-   *
    * Get the flow of the user with the given id.
    *
    * @param {number} userId - The id of the user to get.
@@ -585,8 +544,6 @@ export class Client {
   }
 
   /**
-   * @group User
-   *
    * Get the favourites albums for the given userId.
    *
    * @param {number} userId - The user id to get the favourite albums.
@@ -597,8 +554,6 @@ export class Client {
   }
 
   /**
-   * @group User
-   *
    * Get the favourite artists for the given userId.
    *
    * @param {number} userId - The user id to get the favourite artists.
@@ -609,8 +564,6 @@ export class Client {
   }
 
   /**
-   * @group User
-   *
    * Get the followers for the given userId.
    *
    * @param {number} userId - The user id to get followers.
@@ -621,8 +574,6 @@ export class Client {
   }
 
   /**
-   * @group User
-   *
    * Get the followings for the given userId.
    *
    * @param {number} userId - The user id to get followings.
@@ -633,8 +584,6 @@ export class Client {
   }
 
   /**
-   * @group User
-   *
    * Get the favourites tracks for the given userId.
    *
    * @param {number} userId - The user id to get the favourite tracks.
@@ -645,8 +594,6 @@ export class Client {
   }
 
   /**
-   * @group User
-   *
    * Get the playlists for the given userId.
    *
    * @param {number} userId - The user id to get the playlists.
@@ -659,8 +606,6 @@ export class Client {
   // --------------------------------------------------
 
   /**
-   * @group User
-   *
    * Get the podcasts for the given userId.
    *
    * @param {number} userId - The user id to get the podcasts.
@@ -671,8 +616,6 @@ export class Client {
   }
 
   /**
-   * @group User
-   *
    * Get the radios for the given userId.
    *
    * @param {number} userId - The user id to get the radios.
@@ -683,8 +626,6 @@ export class Client {
   }
 
   /**
-   * @group User
-   *
    * Get the charts for the given userId.
    *
    * @param {number} userId - The user id to get the charts.
@@ -738,8 +679,6 @@ export class Client {
   }
 
   /**
-   * @group Search
-   *
    * Search tracks.
    *
    * Advanced search is available by either formatting the query yourself or
@@ -779,8 +718,6 @@ export class Client {
   }
 
   /**
-   * @group Search
-   *
    * Search albums matching the given query.
    *
    * @param query - the query to search for, this is directly passed as q query.
@@ -796,9 +733,7 @@ export class Client {
   }
 
   /**
-   * @group Search - Search artists matching the given query.
-   *
-   *
+   * Search artists matching the given query.
    *
    * @param query - the query to search for, this is directly passed as q query.
    * @param strict - whether to disable fuzzy search and enable strict mode.
@@ -813,8 +748,6 @@ export class Client {
   }
 
   /**
-   * @group Search
-   *
    * Search playlists matching the given query.
    *
    * @param query - the query to search for, this is directly passed as q query.

@@ -5,13 +5,13 @@ import { Resource } from "./resource";
 import { Track } from "./track";
 
 /**
- * @module API Reference
- * @category Resources
- *
  * To work with Deezer artist objects.
  *
  * @see the {@link https://developers.deezer.com/api/artist | Deezer Artist API Documentation}
  * for more details about each field.
+ * 
+ * @extends Resource
+ * @category Resources
  */
 export class Artist extends Resource {
   name!: string;

@@ -4,13 +4,13 @@ import { Chart } from "./chart";
 import { Resource } from "./resource";
 
 /**
- * @module API Reference
- * @category Resources
- *
  * To work with Deezer editorial objects.
  *
  * @see the {@link https://developers.deezer.com/api/editorial | Deezer Editorial API Documentation}
  * for more details about each field.
+ * 
+ * @extends Resource
+ * @category Resources
  */
 export class Editorial extends Resource {
   name!: string;

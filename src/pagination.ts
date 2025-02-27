@@ -2,10 +2,10 @@ import { Client } from "./client";
 import { Resource } from "./resources";
 
 /**
- * @module API Reference
- *
  * A paginated list of resources from the Deezer API.
  * This class implements AsyncIterable to allow for easy iteration over all items.
+ * 
+ * @category PaginatedList
  */
 export class PaginatedList<T extends Resource> implements AsyncIterable<T> {
   private elements: T[] = [];

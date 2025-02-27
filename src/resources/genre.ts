@@ -5,13 +5,13 @@ import { Radio } from "./radio";
 import { Resource } from "./resource";
 
 /**
- * @module API Reference
- * @category Resources
- *
  * To work with Deezer genre objects.
  *
  * @see the {@link https://developers.deezer.com/api/genre | Deezer Genre API Documentation}
  * for more details about each field.
+ * 
+ * @extends Resource
+ * @category Resources
  */
 export class Genre extends Resource {
   name!: string;

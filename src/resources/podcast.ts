@@ -3,13 +3,13 @@ import { Episode } from "./episode";
 import { Resource } from "./resource";
 
 /**
- * @module API Reference
- * @category Resources
- *
  * To work with Deezer podcast objects.
  *
  * @see the {@link https://developers.deezer.com/api/podcast | Deezer Podcast API Documentation}
  * for more details about each field.
+ * 
+ * @extends Resource
+ * @category Resources
  */
 
 export class Podcast extends Resource {

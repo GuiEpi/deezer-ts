@@ -1,8 +1,8 @@
 /**
- * @module API Reference
- * @category Errors
- *
  * Base class for all Deezer API exceptions.
+ * This is the parent class of all exceptions thrown by the library.
+ * 
+ * @category Errors
  */
 export class DeezerAPIException extends Error {
   constructor(message: string) {
@@ -12,9 +12,12 @@ export class DeezerAPIException extends Error {
 }
 
 /**
+ * Represents errors that are temporary and can be retried.
+ * These errors occur when a request fails but might succeed if retried.
+ * Common scenarios include network issues or temporary service unavailability.
+ * 
  * @category Errors
- *
- * A request failing with this might work if retried.
+ * @extends DeezerAPIException
  */
 export class DeezerRetryableException extends DeezerAPIException {
   constructor(message: string) {
@@ -24,9 +27,25 @@ export class DeezerRetryableException extends DeezerAPIException {
 }
 
 /**
+ * Thrown when the API rate limit is exceeded.
+ * Deezer imposes a limit of 50 requests per 5 seconds.
+ * When this error occurs, you should wait before making new requests.
+ * 
  * @category Errors
- *
- * For quota limit exceeded errors, which can be retried after a delay.
+ * @extends DeezerRetryableException
+ * 
+ * @example
+ * ```typescript
+ * try {
+ *   await client.getArtist(27);
+ * } catch (error) {
+ *   if (error instanceof DeezerQuotaExceededError) {
+ *     // Wait for 5 seconds before retrying
+ *     await new Promise(resolve => setTimeout(resolve, 5000));
+ *     await client.getArtist(27);
+ *   }
+ * }
+ * ```
  */
 export class DeezerQuotaExceededError extends DeezerRetryableException {
   constructor() {
@@ -36,9 +55,11 @@ export class DeezerQuotaExceededError extends DeezerRetryableException {
 }
 
 /**
+ * Base class for HTTP-related errors.
+ * Wraps HTTP errors returned by the Deezer API.
+ * 
  * @category Errors
- *
- * Specialization wrapping HTTP errors.
+ * @extends DeezerAPIException
  */
 export class DeezerHTTPError extends DeezerAPIException {
   constructor(response: Response) {
@@ -46,6 +67,13 @@ export class DeezerHTTPError extends DeezerAPIException {
     this.name = "DeezerHTTPError";
   }
 
+  /**
+   * Creates the appropriate HTTP error based on the response status code.
+   * 
+   * @param response - The HTTP response object
+   * @returns A specific HTTP error instance
+   * @internal
+   */
   static fromResponse(response: Response): DeezerHTTPError {
     if ([502, 503, 504].includes(response.status)) {
       return new DeezerRetryableHTTPError(response);
@@ -65,9 +93,11 @@ export class DeezerHTTPError extends DeezerAPIException {
 }
 
 /**
+ * Represents temporary HTTP errors that can be retried.
+ * This includes server errors (5xx) that might be temporary.
+ * 
  * @category Errors
- *
- * An HTTP error due to a potentially temporary issue.
+ * @extends DeezerRetryableException
  */
 export class DeezerRetryableHTTPError extends DeezerRetryableException {
   constructor(response: Response) {
@@ -77,9 +107,12 @@ export class DeezerRetryableHTTPError extends DeezerRetryableException {
 }
 
 /**
+ * Thrown when access to a resource is forbidden.
+ * This typically occurs when trying to access private resources
+ * without proper authentication.
+ * 
  * @category Errors
- *
- * A HTTP error cause by permission denied error.
+ * @extends DeezerHTTPError
  */
 export class DeezerForbiddenError extends DeezerHTTPError {
   constructor(response: Response) {
@@ -89,9 +122,12 @@ export class DeezerForbiddenError extends DeezerHTTPError {
 }
 
 /**
+ * Thrown when a requested resource is not found (404).
+ * This occurs when trying to access a resource that doesn't exist,
+ * such as an invalid track ID or deleted content.
+ * 
  * @category Errors
- *
- * For 404 HTTP errors.
+ * @extends DeezerHTTPError
  */
 export class DeezerNotFoundError extends DeezerHTTPError {
   constructor(response: Response) {
@@ -101,17 +137,18 @@ export class DeezerNotFoundError extends DeezerHTTPError {
 }
 
 /**
+ * Represents errors returned by the Deezer API in its response body.
+ * These are functional errors where the request was valid but the
+ * API couldn't process it for business logic reasons.
+ * 
  * @category Errors
- *
- * A request failing with this might work if retried.
+ * @extends DeezerAPIException
  */
 export class DeezerErrorResponse extends DeezerAPIException {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(error: any) {
     super(error.message || "Unknown API error");
     this.name = "DeezerErrorResponse";
 
-    // Convert quota exceeded errors to the specific error type
     if (error.message === "Quota limit exceeded") {
       throw new DeezerQuotaExceededError();
     }
@@ -119,9 +156,12 @@ export class DeezerErrorResponse extends DeezerAPIException {
 }
 
 /**
+ * Thrown when trying to access an unknown or invalid resource type.
+ * This error occurs when the requested resource type is not supported
+ * by the Deezer API or this library.
+ * 
  * @category Errors
- *
- * A functional error when the API doesn't accept the request.
+ * @extends DeezerAPIException
  */
 export class DeezerUnknownResource extends DeezerAPIException {
   constructor(message: string) {
