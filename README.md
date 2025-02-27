@@ -9,7 +9,7 @@ A TypeScript wrapper for the Deezer API with full type safety and modern feature
 - 🚦 **Rate Limiting** - Built-in handling of Deezer's rate limits
 - 🔁 **Automatic Retries** - Smart retry logic for failed requests
 - 📚 **Rich Documentation** - Comprehensive guides and API reference
-- 🎵 **Complete API Coverage** - Support for all Deezer API endpoints
+- 🎵 **Complete API Coverage** - Support for all Deezer public API endpoints
 - ⚡ **Modern Async/Await** - Promise-based API with async iterator support
 - 🛡️ **Error Handling** - Detailed error types for better error management
 
@@ -56,12 +56,12 @@ async function example() {
 
 ## Documentation
 
-📚 **[Full Documentation](https://deezer-ts.guics.st/)**
+📚 **[Full Documentation](https://guiepi.github.io/deezer-ts/)**
 
-- [Getting Started Guide](docs/usage.md)
-- [Installation Guide](docs/installation.md)
-- [Pagination Guide](docs/pagination.md)
-- [API Reference](https://deezer-ts.guics.st/api)
+- [Getting Started Guide](https://guiepi.github.io/deezer-ts/docs/usage)
+- [Installation Guide](https://guiepi.github.io/deezer-ts/docs/installation)
+- [Pagination Guide](https://guiepi.github.io/deezer-ts/docs/pagination)
+- [API Reference](https://guiepi.github.io/deezer-ts/api)
 
 ## Key Concepts
 
