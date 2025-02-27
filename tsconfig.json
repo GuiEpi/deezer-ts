@@ -32,7 +32,6 @@
     "sourceMap": true,
     "outDir": "./dist",
     "removeComments": false,
-    "importsNotUsedAsValues": "remove",
 
     // JavaScript Support
     "allowJs": true,
@@ -46,11 +45,6 @@
     // Language and Environment
     "target": "es2020",
     "lib": ["es2020"],
-
-    // Projects
-    "incremental": true,
-    "composite": true,
-    "tsBuildInfoFile": "./dist/.tsbuildinfo",
 
     // Output Formatting
     "pretty": true,
