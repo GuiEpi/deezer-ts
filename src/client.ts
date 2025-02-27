@@ -107,9 +107,11 @@ export class Client {
 
     if (Client.requestQueue.length >= Client.QUOTA_LIMIT) {
       const oldestRequest = Client.requestQueue[0];
-      const waitTime = Client.QUOTA_WINDOW - (now - oldestRequest.timestamp);
-      if (waitTime > 0) {
-        await new Promise((resolve) => setTimeout(resolve, waitTime));
+      if (oldestRequest) {
+        const waitTime = Client.QUOTA_WINDOW - (now - oldestRequest.timestamp);
+        if (waitTime > 0) {
+          await new Promise((resolve) => setTimeout(resolve, waitTime));
+        }
       }
     }
 
@@ -202,7 +204,8 @@ export class Client {
       | GenericResourceConstructor<T>
       | ResourceConstructor
       | null = null;
-    if (result.type && this.objectsTypes[result.type]) {
+    if (result.type && result.type in this.objectsTypes) {
+      // @ts-expect-error Type is safe as we've checked result.type in objectsTypes
       objectClass = this.objectsTypes[result.type];
     } else if (result.type || (!resourceType && result.id)) {
       // in case any new types are introduced by the API
