@@ -104,4 +104,4 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 
 ## License
 
-MIT © [Guillaume Espitia](https://github.com/GuiEpi)
+MIT © [Guillaume](https://github.com/GuiEpi)
