@@ -1,7 +1,5 @@
 <div align="center">
-    <a href="https://react-dot-cursor.guics.st/">
-        <h1>deezer-ts</h1>
-    </a>
+  <h1>deezer-ts</h1>
 </div>
 
 <div align="center">
@@ -85,7 +83,7 @@ async function example() {
 
 ## Documentation
 
-📚 **[Full Documentation](https://guiepi.github.io/deezer-ts/)**
+📚 **[Full Documentation](https://guiepi.github.io/deezer-ts)**
 
 - [Getting Started Guide](https://guiepi.github.io/deezer-ts/documents/Usage.html)
 - [Installation Guide](https://guiepi.github.io/deezer-ts/documents/Installation.html)
