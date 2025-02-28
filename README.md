@@ -1,6 +1,35 @@
-# deezer-ts
+<div align="center">
+    <a href="https://react-dot-cursor.guics.st/">
+        <h1>deezer-ts</h1>
+    </a>
+</div>
 
-A TypeScript wrapper for the Deezer API with full type safety and modern features.
+<div align="center">
+  <a href="https://www.npmjs.com/package/deezer-ts">
+    <img src="https://img.shields.io/npm/v/deezer-ts" alt="NPM Version" />
+  </a>
+  <img src="https://github.com/GuiEpi/deezer-ts/actions/workflows/publish-package.yml/badge.svg" alt="Publish Status" />
+</div>
+
+<br />
+
+<div align="center">
+  <strong>A TypeScript wrapper for the Deezer API with full type safety and modern features.</strong>
+</div>
+
+<br />
+
+<div align="center">
+   <a href="https://guiepi.github.io/deezer-ts">Documentation</a> 
+</div>
+
+<br />
+
+<div align="center">
+  <sub>Cooked by <a href="https://github.com/GuiEpi/">Guillaume Coussot</a> 👨‍🍳</sub>
+</div>
+
+<br />
 
 ## Features
 
@@ -58,10 +87,10 @@ async function example() {
 
 📚 **[Full Documentation](https://guiepi.github.io/deezer-ts/)**
 
-- [Getting Started Guide](https://guiepi.github.io/deezer-ts/docs/usage)
-- [Installation Guide](https://guiepi.github.io/deezer-ts/docs/installation)
-- [Pagination Guide](https://guiepi.github.io/deezer-ts/docs/pagination)
-- [API Reference](https://guiepi.github.io/deezer-ts/api)
+- [Getting Started Guide](https://guiepi.github.io/deezer-ts/documents/Usage.html)
+- [Installation Guide](https://guiepi.github.io/deezer-ts/documents/Installation.html)
+- [Pagination Guide](https://guiepi.github.io/deezer-ts/documents/Pagination.html)
+- [API Reference](https://guiepi.github.io/deezer-ts/modules/index.html)
 
 ## Key Concepts
 
@@ -101,7 +130,3 @@ try {
 ## Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details.
-
-## License
-
-MIT © [Guillaume](https://github.com/GuiEpi)
