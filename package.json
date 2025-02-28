@@ -2,11 +2,17 @@
   "name": "deezer-ts",
   "version": "1.0.0",
   "description": "Deezer API wrapper for Node.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
@@ -30,6 +36,14 @@
   ],
   "author": "Guillaume COUSSOT",
   "license": "MIT",
+  "homepage": "https://guiepi.github.io/deezer-ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuiEpi/deezer-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GuiEpi/deezer-ts/issues"
+  },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@types/jest": "^29.5.14",
