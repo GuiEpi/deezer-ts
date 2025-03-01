@@ -24,7 +24,7 @@
   "navigation": {
     "includeCategories": true,
   },
-//   "hostedBaseUrl": "https://deezer-ts.guics.st/",
+  "hostedBaseUrl": "https://guiepi.github.io/deezer-ts",
   "navigationLinks": {
     "GitHub": "https://github.com/GuiEpi/deezer-ts"
   },
