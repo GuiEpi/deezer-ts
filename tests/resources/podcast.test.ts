@@ -45,7 +45,7 @@ describe("Podcast", () => {
       const firstPage = await episodes.slice(0, 2);
       expect(firstPage.length).toBe(2);
       expect(firstPage[0]).toBeInstanceOf(Episode);
-      expect(firstPage[0].podcast.id).toBe(podcast.id);
+      expect(firstPage[0]!.podcast.id).toBe(podcast.id);
     });
 
     it("should support pagination", async () => {
@@ -61,8 +61,8 @@ describe("Podcast", () => {
       expect(secondPage.length).toBe(2);
 
       // Verify we got different episodes
-      expect(firstPage[0].id).not.toBe(secondPage[0].id);
-      expect(firstPage[1].id).not.toBe(secondPage[1].id);
+      expect(firstPage[0]!.id).not.toBe(secondPage[0]!.id);
+      expect(firstPage[1]!.id).not.toBe(secondPage[1]!.id);
     });
   });
 });

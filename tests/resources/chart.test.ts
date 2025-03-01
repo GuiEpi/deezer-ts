@@ -79,7 +79,7 @@ describe("Chart", () => {
           const secondPage = await tracks.slice(1, 2);
           expect(secondPage.length).toBe(1);
           expect(secondPage[0]).toBeInstanceOf(Track);
-          expect(firstPage[0].id).not.toBe(secondPage[0].id);
+          expect(firstPage[0]!.id).not.toBe(secondPage[0]!.id);
         }
       }
     });

@@ -77,8 +77,8 @@ describe("Editorial", () => {
       expect(secondPage.length).toBe(2);
 
       // Verify we got different releases
-      expect(firstPage[0].id).not.toBe(secondPage[0].id);
-      expect(firstPage[1].id).not.toBe(secondPage[1].id);
+      expect(firstPage[0]!.id).not.toBe(secondPage[0]!.id);
+      expect(firstPage[1]!.id).not.toBe(secondPage[1]!.id);
     });
   });
 });

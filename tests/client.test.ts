@@ -187,8 +187,8 @@ describe("Client", () => {
       expect(secondPage.length).toBe(2);
 
       // Verify we got different tracks
-      expect(firstPage[0].id).not.toBe(secondPage[0].id);
-      expect(firstPage[1].id).not.toBe(secondPage[1].id);
+      expect(firstPage[0]!.id).not.toBe(secondPage[0]!.id);
+      expect(firstPage[1]!.id).not.toBe(secondPage[1]!.id);
     });
   });
 
@@ -269,7 +269,7 @@ describe("Client", () => {
       const albums = await results.toArray();
       expect(albums.length).toBeGreaterThan(0);
       expect(albums[0]).toBeInstanceOf(Album);
-      expect(albums[0].title.toLowerCase()).toContain("discovery"); // Most popular Daft Punk album
+      expect(albums[0]!.title.toLowerCase()).toContain("discovery"); // Most popular Daft Punk album
     });
 
     it("should support strict mode", async () => {
@@ -288,7 +288,7 @@ describe("Client", () => {
       const artists = await results.toArray();
       expect(artists.length).toBeGreaterThan(0);
       expect(artists[0]).toBeInstanceOf(Artist);
-      expect(artists[0].name).toBe("Daft Punk");
+      expect(artists[0]!.name).toBe("Daft Punk");
     });
   });
 
@@ -300,7 +300,7 @@ describe("Client", () => {
       const playlists = await results.toArray();
       expect(playlists.length).toBeGreaterThan(0);
       expect(playlists[0]).toBeInstanceOf(Playlist);
-      expect(playlists[0].title.toLowerCase()).toContain("daft punk");
+      expect(playlists[0]!.title.toLowerCase()).toContain("daft punk");
     });
   });
 

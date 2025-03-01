@@ -46,7 +46,7 @@ describe("Artist", () => {
       const firstPage = await tracks.slice(0, 2);
       expect(firstPage.length).toBe(2);
       expect(firstPage[0]).toBeInstanceOf(Track);
-      expect(firstPage[0].artist.id).toBe(artist.id);
+      expect(firstPage[0]!.artist.id).toBe(artist.id);
     });
   });
 
@@ -60,7 +60,7 @@ describe("Artist", () => {
       const firstPage = await related.slice(0, 2);
       expect(firstPage.length).toBe(2);
       expect(firstPage[0]).toBeInstanceOf(Artist);
-      expect(firstPage[0].id).not.toBe(artist.id);
+      expect(firstPage[0]!.id).not.toBe(artist.id);
     });
   });
 
@@ -85,7 +85,7 @@ describe("Artist", () => {
       const firstPage = await albums.slice(0, 2);
       expect(firstPage.length).toBe(2);
       expect(firstPage[0]).toBeInstanceOf(Album);
-      expect(firstPage[0].artist?.id).toBe(artist.id);
+      expect(firstPage[0]!.artist?.id).toBe(artist.id);
     });
 
     it("should support pagination", async () => {
@@ -101,8 +101,8 @@ describe("Artist", () => {
       expect(secondPage.length).toBe(2);
 
       // Verify we got different albums
-      expect(firstPage[0].id).not.toBe(secondPage[0].id);
-      expect(firstPage[1].id).not.toBe(secondPage[1].id);
+      expect(firstPage[0]!.id).not.toBe(secondPage[0]!.id);
+      expect(firstPage[1]!.id).not.toBe(secondPage[1]!.id);
     });
   });
 

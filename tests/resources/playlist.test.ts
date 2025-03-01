@@ -69,8 +69,8 @@ describe("Playlist", () => {
       expect(secondPage.length).toBe(2);
 
       // Verify we got different tracks
-      expect(firstPage[0].id).not.toBe(secondPage[0].id);
-      expect(firstPage[1].id).not.toBe(secondPage[1].id);
+      expect(firstPage[0]!.id).not.toBe(secondPage[0]!.id);
+      expect(firstPage[1]!.id).not.toBe(secondPage[1]!.id);
     }, 30000); // Increase timeout to 30 seconds
   });
 
@@ -102,9 +102,9 @@ describe("Playlist", () => {
         expect(secondPage.length).toBeGreaterThan(0);
 
         // Verify we got different fans
-        expect(firstPage[0].id).not.toBe(secondPage[0].id);
+        expect(firstPage[0]!.id).not.toBe(secondPage[0]!.id);
         if (secondPage.length > 1) {
-          expect(firstPage[1].id).not.toBe(secondPage[1].id);
+          expect(firstPage[1]!.id).not.toBe(secondPage[1]!.id);
         }
       }
     });

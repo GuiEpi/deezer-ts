@@ -59,8 +59,8 @@ describe("User", () => {
       expect(secondPage.length).toBe(2);
 
       // Verify we got different albums
-      expect(firstPage[0].id).not.toBe(secondPage[0].id);
-      expect(firstPage[1].id).not.toBe(secondPage[1].id);
+      expect(firstPage[0]!.id).not.toBe(secondPage[0]!.id);
+      expect(firstPage[1]!.id).not.toBe(secondPage[1]!.id);
     });
   });
 
