@@ -685,11 +685,6 @@ export class Client {
         queryParts.push(`${paramName}:"${paramValue}"`);
       });
 
-    console.log(path ? `search/${path}` : "search", {
-      q: queryParts.join(" "),
-      ...optionalParams,
-    });
-
     return this.getPaginatedList<T>(path ? `search/${path}` : "search", {
       q: queryParts.join(" "),
       ...optionalParams,
