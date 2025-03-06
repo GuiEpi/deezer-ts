@@ -63,7 +63,7 @@ export class Client {
 
   private static requestQueue: { timestamp: number }[] = [];
   private static readonly QUOTA_WINDOW = 5000; // 5 seconds in ms
-  private static readonly QUOTA_LIMIT = 50; // 50 requests per 5 seconds
+  private static readonly QUOTA_LIMIT = 45; // 45 requests per 5 seconds
 
   /**
    * Create a new client instance.
@@ -138,7 +138,7 @@ export class Client {
   private async retryWithBackoff<T>(
     operation: () => Promise<T>,
     maxRetries: number = 3,
-    baseDelay: number = 2000,
+    baseDelay: number = 5000,
   ): Promise<T> {
     let lastError;
     for (let attempt = 0; attempt < maxRetries; attempt++) {
