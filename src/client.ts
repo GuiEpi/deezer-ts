@@ -558,7 +558,7 @@ export class Client {
     userId: number,
     params?: Record<string, string>,
   ): Promise<PaginatedList<Track>> {
-    return this.getPaginatedList<Track>(`user/${userId}`, params);
+    return this.getPaginatedList<Track>(`user/${userId}/flow`, params);
   }
 
   /**
