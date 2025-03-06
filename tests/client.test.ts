@@ -139,9 +139,9 @@ describe("Client", () => {
 
   describe("getUser", () => {
     it("should retrieve a user", async () => {
-      const user = await client.getUser(2529); // Sample user
+      const user = await client.getUser(363791395);
       expect(user).toBeInstanceOf(User);
-      expect(user.id).toBe(2529);
+      expect(user.id).toBe(363791395);
     });
 
     it("should throw DeezerErrorResponse for invalid user id", async () => {
@@ -354,6 +354,144 @@ describe("Client", () => {
       expect(Array.isArray(podcasts)).toBe(true);
       expect(podcasts.length).toBeGreaterThan(0);
       expect(podcasts[0]).toBeInstanceOf(Podcast);
+    });
+  });
+
+  describe("getUserFlow", () => {
+    it("should get user flow tracks", async () => {
+      const flow = await client.getUserFlow(363791395);
+      expect(flow).toBeInstanceOf(PaginatedList);
+      const tracks = await flow.toArray();
+      expect(tracks.length).toBeGreaterThan(0);
+      expect(tracks[0]).toBeInstanceOf(Track);
+    });
+  });
+
+  describe("getUserAlbums", () => {
+    it("should get user favorite albums", async () => {
+      const albums = await client.getUserAlbums(363791395);
+      expect(albums).toBeInstanceOf(PaginatedList);
+      const albumList = await albums.toArray();
+      expect(albumList.length).toBeGreaterThan(0);
+      expect(albumList[0]).toBeInstanceOf(Album);
+    });
+  });
+
+  describe("getUserArtists", () => {
+    it("should get user favorite artists", async () => {
+      const artists = await client.getUserArtists(363791395);
+      expect(artists).toBeInstanceOf(PaginatedList);
+      const artistList = await artists.toArray();
+      expect(artistList.length).toBeGreaterThan(0);
+      expect(artistList[0]).toBeInstanceOf(Artist);
+    });
+  });
+
+  describe("getUserFollowers", () => {
+    it("should get user followers", async () => {
+      const followers = await client.getUserFollowers(363791395);
+      expect(followers).toBeInstanceOf(PaginatedList);
+      const followerList = await followers.toArray();
+      expect(followerList.length).toBeGreaterThan(0);
+      expect(followerList[0]).toBeInstanceOf(User);
+    });
+  });
+
+  describe("getUserFollowings", () => {
+    it("should get user followings", async () => {
+      const followings = await client.getUserFollowings(363791395);
+      expect(followings).toBeInstanceOf(PaginatedList);
+      const followingList = await followings.toArray();
+      expect(followingList.length).toBeGreaterThan(0);
+      expect(followingList[0]).toBeInstanceOf(User);
+    });
+  });
+
+  describe("getUserTracks", () => {
+    it("should get user favorite tracks", async () => {
+      const tracks = await client.getUserTracks(363791395);
+      expect(tracks).toBeInstanceOf(PaginatedList);
+      const trackList = await tracks.toArray();
+      expect(trackList.length).toBeGreaterThan(0);
+      expect(trackList[0]).toBeInstanceOf(Track);
+    });
+  });
+
+  describe("getUserPlaylists", () => {
+    it("should get user playlists", async () => {
+      const playlists = await client.getUserPlaylists(363791395);
+      expect(playlists).toBeInstanceOf(PaginatedList);
+      const playlistList = await playlists.toArray();
+      expect(playlistList.length).toBeGreaterThan(0);
+      expect(playlistList[0]).toBeInstanceOf(Playlist);
+    });
+  });
+
+  describe("getUserPodcasts", () => {
+    it("should get user podcasts", async () => {
+      const podcasts = await client.getUserPodcasts(2529);
+      expect(podcasts).toBeInstanceOf(PaginatedList);
+      const podcastList = await podcasts.toArray();
+      if (podcastList.length > 0) {
+        expect(podcastList[0]).toBeInstanceOf(Podcast);
+      } else {
+        expect(await podcasts.total()).toBe(0)
+      }
+    });
+  });
+
+  describe("getUserRadios", () => {
+    it("should get user radios", async () => {
+      const radios = await client.getUserRadios(2529);
+      expect(radios).toBeInstanceOf(PaginatedList);
+      const radioList = await radios.toArray();
+      if (radioList.length > 0) {
+        expect(radioList[0]).toBeInstanceOf(Radio);
+      } else {
+        expect(await radios.total()).toBe(0)
+      }
+    });
+  });
+
+  describe("getUserCharts", () => {
+    it("should get user charts", async () => {
+      const charts = await client.getUserCharts(2529);
+      expect(charts).toBeInstanceOf(PaginatedList);
+      const chartList = await charts.toArray();
+      if (chartList.length > 0) {
+        expect(chartList[0]).toBeInstanceOf(Chart);
+      } else {
+        expect(await charts.total()).toBe(0)
+      }
+    });
+  });
+
+  describe("listEditorials", () => {
+    it("should list editorials", async () => {
+      const editorials = await client.listEditorials();
+      expect(editorials).toBeInstanceOf(PaginatedList);
+      const editorialList = await editorials.toArray();
+      expect(editorialList.length).toBeGreaterThan(0);
+      expect(editorialList[0]).toBeInstanceOf(Editorial);
+    });
+  });
+
+  describe("listRadios", () => {
+    it("should list radios", async () => {
+      const radios = await client.listRadios();
+      expect(Array.isArray(radios)).toBe(true);
+      expect(radios.length).toBeGreaterThan(0);
+      expect(radios[0]).toBeInstanceOf(Radio);
+    });
+  });
+
+  describe("getRadioTop", () => {
+    it("should get top radios", async () => {
+      const radios = await client.getRadioTop();
+      expect(radios).toBeInstanceOf(PaginatedList);
+      const radioList = await radios.toArray();
+      expect(radioList.length).toBeGreaterThan(0);
+      expect(radioList[0]).toBeInstanceOf(Radio);
     });
   });
 });
