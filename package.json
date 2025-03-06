@@ -1,6 +1,6 @@
 {
   "name": "deezer-ts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Deezer API wrapper for Node.js",
   "exports": {
     ".": {
